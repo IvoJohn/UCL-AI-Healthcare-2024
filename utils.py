@@ -181,3 +181,30 @@ def patient_predict_tree(tree_model, threshold=0.5):
         print('Sepsis')
     else:
         print('Healthy')
+
+        
+def show_predictions_first():
+    false_positive_path = '/content/skin_cancer/test/benign/1537.jpg' #undetected benign
+    true_negative_path = '/content/skin_cancer/test/benign/1025.jpg' #detected benign
+    false_negative_path = '/content/skin_cancer/test/malignant/1380.jpg' # undetected malignant
+    true_positive_path = '/content/skin_cancer/test/malignant/953.jpg' #detected malignant
+
+    fig, axs = plt.subplots(2,2, figsize=(8,8))
+
+    axs[0,0].imshow(plt.imread(true_positive_path))
+    axs[0,0].set_title('True positive', size=15)
+    axs[0,0].axis('off')
+
+    axs[0,1].imshow(plt.imread(false_negative_path))
+    axs[0,1].set_title('False negative', size=15)
+    axs[0,1].axis('off')
+
+    axs[1,0].imshow(plt.imread(false_positive_path))
+    axs[1,0].set_title('False positive', size=15)
+    axs[1,0].axis('off')
+
+    axs[1,1].imshow(plt.imread(true_negative_path))
+    axs[1,1].set_title('True negative', size=15)
+    axs[1,1].axis('off')
+
+    plt.show()
