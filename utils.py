@@ -184,7 +184,7 @@ def patient_predict_tree(tree_model, threshold=0.5):
     inputs = [float(x) for x in inputs]
 
     x = np.reshape(inputs, (1, 9))
-    pred = tree_model.predict(x, verbose=0)
+    pred = tree_model.predict(x)
     if pred > threshold:
         print('\n\nPREDICTION: Sepsis')
     else:
