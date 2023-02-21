@@ -183,6 +183,26 @@ def patient_predict_tree(tree_model, threshold=0.5):
     else:
         print('Healthy')
 
+
+def evaluate_model_first(model, test_directory, img_size=(192,192), batch_size=24):
+  test_data = tf.keras.utils.image_dataset_from_directory(
+    directory=test_directory,
+    seed=1,
+    image_size=img_size,
+    batch_size=batch_size
+  )
+
+  model_evaluation = model.evaluate(test_data)
+
+  print('\nTEST RESULTS')
+  print('Accuracy: {:.4f}'.format(model_evaluation[1]))
+  print('Area under a receiver operating characteristic curve: {:.4f}'.format(model_evaluation[2]))
+  print('False negatives: {:.0f}/{:.0f}'.format(model_evaluation[3],len(test_data)))
+  print('False positives: {:.0f}/{:.0f}'.format(model_evaluation[4],len(test_data)))
+  print('True negatives: {:.0f}/{:.0f}'.format(model_evaluation[5],len(test_data)))
+  print('True positives: {:.0f}/{:.0f}'.format(model_evaluation[6],len(test_data)))
+  print('Recall: {:.4f}'.format(model_evaluation[7]))
+
         
 def show_predictions_first():
     false_positive_path = '/content/skin_cancer/test/benign/1537.jpg' #undetected benign
