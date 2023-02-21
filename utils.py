@@ -4,6 +4,7 @@ from tensorflow import keras
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn import metrics
 import numpy as np
+import cv2
 
 
 class PlotLossesFirst(keras.callbacks.Callback):
@@ -189,7 +190,7 @@ def show_predictions_first():
     false_negative_path = '/content/skin_cancer/test/malignant/1380.jpg' # undetected malignant
     true_positive_path = '/content/skin_cancer/test/malignant/953.jpg' #detected malignant
 
-    fig, axs = plt.subplots(2,2, figsize=(8,8))
+    fig, axs = plt.subplots(2,2, figsize=(6,6), dpi=100)
 
     axs[0,0].imshow(plt.imread(true_positive_path))
     axs[0,0].set_title('True positive', size=15)
@@ -208,3 +209,28 @@ def show_predictions_first():
     axs[1,1].axis('off')
 
     plt.show()
+
+    
+def show_other():
+
+    #n source - https://www.clevelandclinicmeded.com/medicalpubs/diseasemanagement/dermatology/common-benign-growths/
+    #p source - 
+
+    different_img_n = '/content/00.png'
+    different_img_p = '/content/11.png'
+
+    im_n = cv2.cvtColor(cv2.imread(different_img_n), cv2.COLOR_BGR2RGB)
+    im_p = cv2.cvtColor(cv2.imread(different_img_p), cv2.COLOR_BGR2RGB)
+
+    pred_n = np.expand_dims(im_n, axis=0)
+    pred_p = np.expand_dims(im_p, axis=0)
+
+    fig, axs = plt.subplots(1,2, figsize=(6,3))
+
+    axs[0].imshow(im_n)
+    axs[0].axis('off')
+    axs[0].set_title('Benign \nclassified as malignant', size=15)
+
+    axs[1].imshow(im_p)
+    axs[1].axis('off')
+    axs[1].set_title('Malignant \nclassified as benign', size=15)
