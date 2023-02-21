@@ -155,13 +155,16 @@ def patient_predict_dnn(model, threshold=0.5):
         'Hours between hospital admit and ICU admit [-1000 - 0]: ')
     iculos = input('Length of stay in ICU in hours []: [5-150]')
 
-    x = np.reshape([hr, o2, sbp, map, resp, age,
-                   gender, hosp_adm, iculos], (1, 9))
+    inputs = [hr, o2, sbp, map, resp, age,
+                   gender, hosp_adm, iculos]
+    inputs = [float(x) for x in inputs]
+
+    x = np.reshape(inputs, (1, 9))
     pred = model.predict(x, verbose=0)
     if pred > threshold:
-        print('Sepsis')
+        print('\n\nPREDICTION: Sepsis')
     else:
-        print('Healthy')
+        print('\n\nPREDICTION: Healthy')
 
 
 def patient_predict_tree(tree_model, threshold=0.5):
@@ -176,13 +179,16 @@ def patient_predict_tree(tree_model, threshold=0.5):
         'Hours between hospital admit and ICU admit [-1000 - 0]: ')
     iculos = input('Length of stay in ICU in hours []: [5-150]')
 
-    x = np.reshape([hr, o2, sbp, map, resp, age,
-                   gender, hosp_adm, iculos], (1, 9))
+    inputs = [hr, o2, sbp, map, resp, age,
+                    gender, hosp_adm, iculos]
+    inputs = [float(x) for x in inputs]
+
+    x = np.reshape(inputs, (1, 9))
     pred = tree_model.predict(x, verbose=0)
     if pred > threshold:
-        print('Sepsis')
+        print('\n\nPREDICTION: Sepsis')
     else:
-        print('Healthy')
+        print('\n\nPREDICTION: Healthy')
 
 
 def evaluate_model_first(model, test_directory, img_size=(192,192), batch_size=24):
