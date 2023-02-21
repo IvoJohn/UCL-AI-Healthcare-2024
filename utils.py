@@ -144,6 +144,9 @@ def test_show_metrics_tree(tree_model, X_test, y_test, threshold=0.5, labels=['H
 
 
 def patient_predict_dnn(model, threshold=0.5):
+    
+    print("\nProvide patient's parameters\n")
+    
     hr = input('HR [30-200]: ')
     o2 = input('Saturation [40-100]: ')
     sbp = input('Systolic blood pressure [35-240]: ')
@@ -168,6 +171,9 @@ def patient_predict_dnn(model, threshold=0.5):
 
 
 def patient_predict_tree(tree_model, threshold=0.5):
+    
+    print("\nProvide patient's parameters\n")
+    
     hr = input('HR [30-200]: ')
     o2 = input('Saturation [40-100]: ')
     sbp = input('Systolic blood pressure [35-240]: ')
