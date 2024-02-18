@@ -210,10 +210,10 @@ def evaluate_model_first(model, test_directory, img_size=(192,192), batch_size=2
     print('\nTEST RESULTS')
     print('Accuracy: {:.4f}'.format(model_evaluation[1]))
     print('Area under a receiver operating characteristic curve: {:.4f}'.format(model_evaluation[2]))
-    print('False negatives: {:.0f}/{:.0f}'.format(model_evaluation[3],len(test_data)))
-    print('False positives: {:.0f}/{:.0f}'.format(model_evaluation[4],len(test_data)))
-    print('True negatives: {:.0f}/{:.0f}'.format(model_evaluation[5],len(test_data)))
-    print('True positives: {:.0f}/{:.0f}'.format(model_evaluation[6],len(test_data)))
+    print('False negatives: {:.0f}/{:.0f}'.format(model_evaluation[3],len(test_data*batch_size)))
+    print('False positives: {:.0f}/{:.0f}'.format(model_evaluation[4],len(test_data*batch_size)))
+    print('True negatives: {:.0f}/{:.0f}'.format(model_evaluation[5],len(test_data*batch_size)))
+    print('True positives: {:.0f}/{:.0f}'.format(model_evaluation[6],len(test_data*batch_size)))
     print('Recall: {:.4f}'.format(model_evaluation[7]))
 
         
