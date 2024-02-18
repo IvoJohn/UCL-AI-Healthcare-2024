@@ -6,6 +6,7 @@ from sklearn import metrics
 import numpy as np
 import cv2
 import tensorflow
+import os
 
 
 class PlotLossesFirst(keras.callbacks.Callback):
@@ -49,6 +50,8 @@ class PlotLossesFirst(keras.callbacks.Callback):
         fig, axs = plt.subplots(1, 2, figsize=(16, 4), dpi=100)
         axs[0].set_xlim([0, self.n_epochs-1])
         axs[1].set_xlim([0, self.n_epochs-1])
+        axs[0].set_ylim([0, np.max(np.concatenate(([1], self.losses, self.val_losses), axis=0))])
+        axs[1].set_ylim([0, 1])
         axs[0].plot(self.x, self.losses, label="Training loss")
         axs[0].plot(self.x, self.val_losses, label="Validaiton loss")
         axs[1].plot(self.x, self.recalls, label="Training recall")
