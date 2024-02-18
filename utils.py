@@ -217,11 +217,11 @@ def evaluate_model_first(model, test_directory, img_size=(192,192), batch_size=2
     print('Recall: {:.4f}'.format(model_evaluation[7]))
 
         
-def show_predictions_first():
-    false_positive_path = '/content/skin_cancer/test/benign/1537.jpg' #undetected benign
-    true_negative_path = '/content/skin_cancer/test/benign/1025.jpg' #detected benign
-    false_negative_path = '/content/skin_cancer/test/malignant/1380.jpg' # undetected malignant
-    true_positive_path = '/content/skin_cancer/test/malignant/953.jpg' #detected malignant
+def show_predictions_first(test_path):
+    false_positive_path = os.path.join(test_path, 'benign/1537.jpg') #undetected benign
+    true_negative_path = os.path.join(test_path, 'benign/1025.jpg') #detected benign
+    false_negative_path = os.path.join(test_path, 'malignant/1380.jpg') # undetected malignant
+    true_positive_path = os.path.join(test_path, 'malignant/953.jpg') #detected malignant
 
     fig, axs = plt.subplots(2,2, figsize=(6,6), dpi=100)
 
